@@ -169,46 +169,42 @@ Write a program that Reverses a string
 
 /* Create a function that takes a LinkedList and reverses it*/
 
-class Node {
-    constructor(val) {
-        this.data = val;
+class ListNode {
+    constructor(data) {
+        this.data = data;
         this.next = null;
     }
+
 }
 
-/* Function to reverse the linked list */
-function reverse(node) {
-    let prev = null;
-    let current = node;
-    let next = null;
-    while (current != null) {
-        next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
-
+class LinkedList {
+    constructor(head = null) {
+        this.head = head;
     }
-    node = prev;
-    return node;
-}
 
-// prints content of double linked list
-function printList(node) {
-    while (node != null) {
-        console.log(node.data + " ");
-        node = node.next;
+    reverse(node1) {
+        var prev = null;
+        var current = node1;
+        var next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        node1 = prev;
+        return node1;
     }
 }
+let node1 = new LinkedList(1);
+let node2 = new LinkedList(2);
+let node3 = new LinkedList(3);
 
-// Driver Code
+node1.next = node2;
+node2.next = node3;
 
-head = new Node(1);
-head.next = new Node(2);
-head.next.next = new Node(3);
-head.next.next.next = new Node(4);
-head.next.next.next.next = new Node(5);
-console.log("Given linked list");
-printList(head);
-head = reverse(head);
-console.log("Reversed linked list ");
-printList(head);
+let list = new LinkedList(node1);
+
+console.log(list);
+
+console.log(list.reverse(node1));
