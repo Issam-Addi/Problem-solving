@@ -205,6 +205,4 @@ node2.next = node3;
 
 let list = new LinkedList(node1);
 
-console.log(list);
-
 console.log(list.reverse(node1));
