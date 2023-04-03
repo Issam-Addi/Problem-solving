@@ -51,53 +51,164 @@ Write a program that Reverses a string
 // let myString = "hello world";
 
 
-class MinStack {
-    constructor() {
-        this.stack = [];
-        this.minStack = [];
-    }
+// class MinStack {
+//     constructor() {
+//         this.stack = [];
+//         this.minStack = [];
+//     }
 
-    push(val) {
-        this.stack.push(val);
-        if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
-            this.minStack.push(val);
-        }
-    }
+//     push(val) {
+//         this.stack.push(val);
+//         if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+//             this.minStack.push(val);
+//         }
+//     }
 
-    pop() {
-        const val = this.stack.pop();
-        if (val === this.minStack[this.minStack.length - 1]) {
-            this.minStack.pop();
-        }
-        return val;
-    }
+//     pop() {
+//         const val = this.stack.pop();
+//         if (val === this.minStack[this.minStack.length - 1]) {
+//             this.minStack.pop();
+//         }
+//         return val;
+//     }
 
-    getMin() {
-        if (this.minStack.length === 0) {
-            return null; // or throw an error
-        }
-        return this.minStack[this.minStack.length - 1];
-    }
-}
+//     getMin() {
+//         if (this.minStack.length === 0) {
+//             return null; // or throw an error
+//         }
+//         return this.minStack[this.minStack.length - 1];
+//     }
+// }
 
 
 
 
 //Q2
 
-function reverseQueue(queue) {
-    const stack = [];
-    while (queue.length > 0) {
-        stack.push(queue.shift());
+// function reverseQueue(queue) {
+//     const stack = [];
+//     while (queue.length > 0) {
+//         stack.push(queue.shift());
+//     }
+//     while (stack.length > 0) {
+//         queue.push(stack.pop());
+//     }
+//     return queue;
+// }
+
+
+// const queue = [1, 2, 3, 4, 5];
+// reverseQueue(queue);
+// console.log(queue);
+
+
+
+
+
+/* Create a function that takes a LinkedList and deletes the middle node 
+    in it and returns it
+ */
+
+// class Node {
+//     constructor(data) {
+//         this.data = data;
+//         this.next = null;
+//     }
+// }
+
+// class LinkedList {
+//     constructor() {
+//         this.head = null;
+//         this.tail = null;
+//         this.length = 0;
+//     }
+
+//     addNode(data) {
+//         const new_node = new Node(data);
+//         if (!this.head) {
+//             this.head = new_node;
+//             this.tail = this.head;
+//         } else {
+//             this.tail.next = new_node;
+//             this.tail = new_node;
+//         }
+//         this.length++;
+//     }
+
+//     deleteMiddleNode() {
+//         if (this.length < 2) {
+//             return this.head;
+//         }
+//         const middle = Math.floor(this.length / 2);
+//         let prevNode = null;
+//         let currNode = this.head;
+//         for (let i = 0; i < middle; i++) {
+//             prevNode = currNode;
+//             currNode = currNode.next;
+//         }
+//         prevNode.next = currNode.next;
+
+//         this.length--;
+//         return this.head;
+//     }
+// }
+
+// const linkedList = new LinkedList();
+// linkedList.addNode(1);
+// linkedList.addNode(2);
+// linkedList.addNode(3);
+// linkedList.addNode(4);
+// linkedList.addNode(5);
+
+
+
+// linkedList.deleteMiddleNode();
+// console.log(linkedList);
+
+
+
+/* Create a function that takes a LinkedList and reverses it*/
+
+class Node {
+    constructor(val) {
+        this.data = val;
+        this.next = null;
     }
-    while (stack.length > 0) {
-        queue.push(stack.pop());
-    }
-    return queue;
 }
 
+/* Function to reverse the linked list */
+function reverse(node) {
+    let prev = null;
+    let current = node;
+    let next = null;
+    while (current != null) {
+        next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
 
-const queue = [1, 2, 3, 4, 5];
-reverseQueue(queue);
-console.log(queue);
+    }
+    node = prev;
+    return node;
+}
 
+// prints content of double linked list
+function printList(node) {
+    while (node != null) {
+        console.log(node.data + " ");
+        node = node.next;
+    }
+}
+
+// Driver Code
+
+head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+console.log("Given linked list");
+printList(head);
+head = reverse(head);
+console.log("Reversed linked list ");
+printList(head);
